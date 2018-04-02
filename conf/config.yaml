@@ -1,0 +1,31 @@
+---
+service-agent:
+  dependency-check-interval: 30s
+  managed-service:
+    description: "Rolex watch service"
+    name: Rolex
+    process:
+      args:
+        - timerurl
+      exec: rolex
+      type: binary
+    service-dependency:
+      -
+        endpoint-mapping: weatherurl
+        service-name: WeatherService
+        service-type: Weather
+        skip: true
+        unavailablity-impact: shutdown-managed-service
+      -
+        endpoint-mapping: timerurl
+        min-instances: 1
+        service-name: TimerService
+        service-type: Timer
+        unavailablity-impact: shutdown-managed-service
+    type: Watch
+  management-port: 9999
+  service-discovery:
+    -
+      type: consul
+    -
+      url: "localhost:8500"

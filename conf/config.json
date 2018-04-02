@@ -1,0 +1,37 @@
+{
+  "service-agent": {
+    "management-port": 9989,
+    "service-discovery": {
+      "type": "consul",
+      "url": "localhost:8500"
+    },
+    "managed-service": {
+      "description": "Rolex watch service",
+      "name": "Rolex",
+      "process": {
+        "args": [
+          "timerurl"
+        ],
+        "exec": "rolex",
+        "type": "binary"
+      },
+      "service-dependency": [{
+        "endpoint-mapping": "weatherurl",
+        "service-name": "WeatherService",
+        "service-type": "Weather",
+        "skip": true,
+        "unavailablity-impact": "shutdown-managed-service"
+      },
+        {
+          "endpoint-mapping": "timerurl",
+          "min-instances": 1,
+          "service-name": "TimerService",
+          "service-type": "Timer",
+          "unavailablity-impact": "shutdown-managed-service"
+        }
+      ],
+      "type": "Watch"
+    },
+    "dependency-check-interval": "30s"
+  }
+}
