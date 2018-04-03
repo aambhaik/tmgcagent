@@ -4,7 +4,7 @@
 
 ## Installation
 ### Prerequisites
-* Consul [consul](https://www.docker.com/products/docker-toolbox) 
+* Consul [consul](https://consul.io) 
 * TMGC [TMGC](https://github.com/aambhaik/tmgcagent)
 
 ## Getting Started
