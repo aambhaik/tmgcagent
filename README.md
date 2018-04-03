@@ -49,7 +49,8 @@ The TMGC agent is responsible for managing a service such as Rolex.
 
 Rolex service, in turn, depends on the timer service and expects at least 1 instance of timer to be running.
 
-When the TMGC agent starts, it looks up a configuration that describes
+When the TMGC agent starts, it looks up a configuration that describes:
+
 	a. the service that the agent is supposed to manage, aka the "managed service"
 	b. the dependencies that the "managed service" expects to use.
 	
